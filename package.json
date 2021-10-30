@@ -6,14 +6,21 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "e2e": "nx e2e"
+    "e2e": "nx e2e",
+    "postinstall": "npx prisma generate"
   },
   "private": true,
   "dependencies": {
     "@nrwl/next": "^13.1.2",
+    "@prisma/client": "^3.3.0",
     "core-js": "^3.6.5",
     "express": "4.17.1",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^10.1.1",
     "next": "12.0.0",
+    "prisma": "3.3.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-is": "17.0.2",
