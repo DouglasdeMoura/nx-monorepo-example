@@ -2,7 +2,7 @@ import Koa from 'koa'
 import Router from 'koa-router'
 import graphqlHTTP from 'koa-graphql'
 import bodyParser from 'koa-bodyparser'
-import { makeSchema, objectType, queryType } from 'nexus'
+import { makeSchema, objectType, queryType, intArg } from 'nexus'
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
@@ -25,6 +25,11 @@ const QueryPost = queryType({
     t.list.field('allPosts', {
       type: 'Post',
       resolve: () => prisma.post.findMany()
+    })
+    t.field('postById', {
+      type: 'Post',
+      args: { id: intArg() },
+      resolve: (_, { id }) => prisma.post.findFirst({ where: { id } })
     })
   }
 })
@@ -58,7 +63,6 @@ posts
     await next()
   })
   .post('/posts', async (ctx, next) => {
-    console.log(ctx.req)
     const { authorId, title, content } = ctx.request.body
     const post = await prisma.post.create({ data: { title, content, authorId: Number(authorId) } })
 
@@ -93,4 +97,5 @@ const port = process.env.port || 4000;
 const server = app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/api`)
 });
+
 server.on('error', console.error)
