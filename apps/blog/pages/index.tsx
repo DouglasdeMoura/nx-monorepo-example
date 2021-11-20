@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import Link from 'next/link'
 import { useGraphQL } from '../lib/useGraphQL';
 
 const query = `
@@ -12,7 +12,7 @@ const query = `
 }
 `
 
-type Posts = {
+type Post = {
   id: string
   title: string
   content: string
@@ -20,7 +20,7 @@ type Posts = {
 }
 
 type Response = {
-  allPosts: Posts[]
+  allPosts: Post[]
 }
 
 export function Index() {
@@ -33,7 +33,14 @@ export function Index() {
     <h1>Blog</h1>
     {data?.allPosts?.map(post => (
       <div key={post.id}>
-        <h2>{post.title}</h2>
+        <h2>
+          <Link href={{
+            pathname: '/posts/[id]',
+            query: { id: post.id },
+          }}>
+            <a>{post.title}</a>
+          </Link>
+        </h2>
         <p>{post.content}</p>
       </div>
     ))}

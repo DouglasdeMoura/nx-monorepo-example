@@ -15,7 +15,7 @@ async function fetchGraphQL<Data>(text, variables) {
   .then(res => res.data)
 }
 
-export function useGraphQL<Data>(query: string, variables?: { [key: string]: string | number }) {
+export function useGraphQL<Data>(query: string, variables?: { [key: string]: any }) {
   const [error, setError] = useState<Error | null>(null)
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState<Data>()
@@ -29,7 +29,7 @@ export function useGraphQL<Data>(query: string, variables?: { [key: string]: str
       .then((data) => setData(data))
       .catch((error) => setError(error))
       .finally(() => setLoading(false))
-  }, [query, variables])
+  }, [])
 
   return { error, loading, data }
 }
