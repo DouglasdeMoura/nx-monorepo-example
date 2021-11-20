@@ -1,7 +1,6 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-
-
+import { Provider } from '../api/client';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
@@ -10,7 +9,9 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <title>Welcome to blog!</title>
       </Head>
       <div className="app">
-        <Component {...pageProps} />
+        <Provider>
+          <Component {...pageProps} />
+        </Provider>
       </div>
     </>
   );

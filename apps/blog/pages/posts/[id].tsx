@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
-import { useGraphQL } from '../../lib/useGraphQL'
+import { useQuery } from 'urql'
 
-const query = `
-{
-  postById(id: 5) {
+const PostQuery = `
+query ($id: Int!) {
+  postById (id: $id) {
     id
     title
     content
@@ -25,13 +25,22 @@ type Response = {
 
 export default function Post() {
   const { query: { id } } = useRouter()
-  return <ThePost id={id.toString()} />
+
+  if (!id)
+    return <>Carregando...</>
+
+  return <ThePost id={Number(id)} />
 }
 
-function ThePost({ id }: { id: string }) {
-  const { data, error, loading } = useGraphQL<Response>(query, { id })
+function ThePost({ id }: { id: number }) {
+  const [ result ] = useQuery<Response>({
+    query: PostQuery,
+    variables: { id }
+  })
 
-  if (loading) return <p>Loading...</p>
+  const { data, fetching, error } = result;
+
+  if (fetching) return <p>Loading...</p>
   if (error) return <p>Error: {error.message}</p>
   if (!data) return <p>No data</p>
 

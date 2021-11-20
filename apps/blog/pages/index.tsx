@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { useGraphQL } from '../lib/useGraphQL';
+import { useQuery } from 'urql'
 
-const query = `
+const PostsQuery = `
 {
   allPosts {
     id
@@ -24,9 +24,13 @@ type Response = {
 }
 
 export function Index() {
-  const { data, error, loading } = useGraphQL<Response>(query)
+  const [ result ] = useQuery<Response>({
+    query: PostsQuery,
+  })
 
-  if (loading) return <p>Loading...</p>
+  const { data, fetching, error } = result;
+
+  if (fetching) return <p>Loading...</p>
   if (error) return <p>Error: {error.message}</p>
 
   return <div>
