@@ -3,6 +3,7 @@
   "projects": {
     "api": "apps/api",
     "blog": "apps/blog",
-    "blog-e2e": "apps/blog-e2e"
+    "blog-e2e": "apps/blog-e2e",
+    "graphql": "apps/graphql"
   }
 }
