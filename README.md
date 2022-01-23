@@ -79,7 +79,18 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
 Visit the [Nx Documentation](https://nx.dev) to learn more.
 
+## Collaboration
 
+Here are the people who are collaborating with the evolution of mutual learning and continuing with us
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/DouglasdeMoura"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/564542?v=4" width="100px;" alt=""/><br /><sub><b>Douglas Mouras</b></sub></a><br /><a href="https://github.com/DouglasdeMoura" title="DouglasMoura"></a></td>
+    <td align="center"><a href="https://github.com/icocampos"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/82005138?v=4" width="100px;" alt=""/><br /><sub><b>Ícaro Campos</b></sub></a><br /><a href="https://github.com/icocampos" title="ÍcaroCampos"></a></td>
+    <td align="center"><a href="https://github.com/Gilles30"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/54437398?v=4" width="100px;" alt=""/><br /><sub><b>Lorison Gilles</b></sub></a><br /><a href="https://github.com/Gilles30" title="LorisonGilles"></a></td>
+    
+  </tr>
+</table>
 
 ## ☁ Nx Cloud
 
